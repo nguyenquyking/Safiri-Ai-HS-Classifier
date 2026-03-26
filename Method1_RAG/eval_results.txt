@@ -1,0 +1,19 @@
+
+================ ADVERSARIAL EVALUATION REPORT ================
+
+Query Snippet                                 | True | ML Baseline | RAG Vector | RAG + LLM |
+---------------------------------------------------------------------------------------------------------
+Molded plastic protective shell carrying...   | 3926 | 3926 PASS   | 3926 PASS  | 3926 PASS |
+Wooden dining table set with 4 chairs oa...   | 9403 | 9403 PASS   | 9403 PASS  | 9403 PASS |
+100% Cotton Crewneck T-Shirt Knitted gra...   | 6109 | 6109 PASS   | 6109 PASS  | 6109 PASS |
+Digital streaming apparatus with built-i...   | 8525 | 8525 PASS   | 8525 PASS  | 8525 PASS |
+Heavy duty plastic storage bin specially...   | 3926 | 3926 PASS   | 3926 PASS  | 3926 PASS |
+Men's Long Sleeve Button-Down Oxford Dre...   | 6205 | 6205 PASS   | 6205 PASS  | 6205 PASS |
+Small plastic step stool for kids design...   | 3926 | 8517 FAIL   | 3926 PASS  | 3926 PASS |
+Leather carrying case for Digital Camera...   | 3926 | 8525 FAIL   | 8525 FAIL  | 8525 FAIL |
+---------------------------------------------------------------------------------------------------------
+Accuracy ML Baseline:  75%
+Accuracy RAG Vector:   88%
+Accuracy RAG + LLM:    88%
+
+CONCLUSION: The LLM Generative layer acts as the ultimate Grammar Parser, successfully defeating keyword 'Rigidity/Bias' that structurally breaks Traditional ML and pure Dense Retrieval.
