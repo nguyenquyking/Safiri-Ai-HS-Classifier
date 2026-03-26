@@ -1,37 +1,52 @@
-description,hs_code,category
-Men's 100% Cotton Crewneck T-Shirt Knitted short sleeve size XS color White ID-2575,6109,Apparel (Knitted)
-Smartphone 256GB Black Unlocked,8517,Electronics/Networking
-Wooden dining table set with 4 chairs - dark walnut ID-7968,9403,Furniture
-Unisex heavy cotton relaxed fit graphic tee Navy size S,6109,Apparel (Vague)
-Men's 100% Cotton Crewneck T-Shirt Knitted short sleeve size L color Grey,6109,Apparel (Knitted)
-Men's 100% Cotton Crewneck T-Shirt Knitted short sleeve size XL color Yellow,6109,Apparel (Knitted)
-Metal frame office desk with wooden tabletop - industrial style,9403,Furniture
-iPhone 14 Pro 512GB Ceramic Shield,8517,Electronics/Networking
-Action Camera waterproof 5.3K - vlogging kit,8525,Camera/Optical
-Digital streaming apparatus with built-in camera - outdoor proof,8525,Camera/Optical
-Men's Long Sleeve Button-Down Oxford Dress Shirt woven size XS color Black ID-3193,6205,Apparel (Woven)
-Mirrorless DSLR body only - outdoor proof,8525,Camera/Optical
-Digital Camera setup with 4K video - 24.2 MP,8525,Camera/Optical
-Rustic oak bookshelf 5-tier - industrial style ID-5599,9403,Furniture
-"Grey Set of 5 plastic storage containers for kitchen, airtight [with snap lid] ID-2905",3926,Plastics
-Grey Small plastic step stool for kids [medium size],3926,Plastics
-Cotton blend casual collar shirt short sleeve summer wear Blue ID-4480,6205,Apparel (Vague)
-Green Molded plastic protective shell carrying case [BPA-free],3926,Plastics
-Digital Camera setup with 4K video - vlogging kit ID-892,8525,Camera/Optical
-Men's Long Sleeve Button-Down Oxford Dress Shirt woven size L color Black,6205,Apparel (Woven)
-Clear Molded plastic protective shell carrying case [BPA-free],3926,Plastics
-Galaxy S23 Ultra 24-Port Managed,8517,Electronics/Networking
-Red Small plastic step stool for kids [BPA-free],3926,Plastics
-Men's 100% Cotton Crewneck T-Shirt Knitted short sleeve size S color White,6109,Apparel (Knitted)
-Molded plastic chair for indoor outdoor use - dark walnut,9403,Furniture
-5G Network Hub 512GB Ceramic Shield,8517,Electronics/Networking
-Men's Long Sleeve Button-Down Oxford Dress Shirt woven size S color Blue,6205,Apparel (Woven)
-Security surveillance camera wireless - brand new,8525,Camera/Optical
-Black Molded plastic protective shell carrying case [medium size],3926,Plastics
-Cotton blend casual collar shirt short sleeve summer wear White,6205,Apparel (Vague)
-Wooden dining table set with 4 chairs - industrial style ID-7589,9403,Furniture
-Pixel 7 Pro GSM CDMA 5G 128GB,8517,Electronics/Networking
-Galaxy S23 Ultra GSM CDMA 5G 128GB,8517,Electronics/Networking
-Men's 100% Cotton Crewneck T-Shirt Knitted short sleeve size L color Grey ID-2285,6109,Apparel (Knitted)
-Metal frame office desk with wooden tabletop - dark walnut,9403,Furniture
-Men's Long Sleeve Button-Down Oxford Dress Shirt woven size S color Green,6205,Apparel (Woven)
+description,hs_code,category,sample_type,confusable_with,classification_note
+"Vintage pine wood bookcase with glass doors, a display cabinet for study.",9403,Other furniture and parts thereof,standard,,"Clear standard sample: contains primary identifying keywords (bookcase, cabinet)."
+"Compact dark wood bedside table, a nightstand furniture piece with drawer.",9403,Other furniture and parts thereof,standard,,"Clear standard sample: contains primary identifying keywords (table, furniture)."
+Polypropylene 3-step folding step stool anti-slip treads 150kg rated capacity white,3926,Other articles of plastics,standard,,Clear standard: polypropylene + step stool.
+"Lightweight outdoor activity top, featuring short sleeves and a breathable, flexible textile for movement.",6109,"T-shirts, singlets and vests — knitted or crocheted",ambiguous,,"Ambiguous: missing primary identifiers 'T-shirt' and 'knitted'; inferrable from 'outdoor activity top', 'short sleeves', and 'flexible textile'."
+Large injection-molded polypropylene storage cabinet 5-shelf with locking door 180cm,3926,Other articles of plastics,overlapping,9403.0,WCO GRI 3(b): primary classification as plastic article (3926); lacks dedicated furniture seating/work-surface function; 9403 considered.
+"Formal men's striped dress shirt, woven poplin fabric, regular fit, size 15.5 neck, not knitted.",6205,Men's shirts — not knitted or crocheted (woven),standard,,Clear standard sample: contains primary identifying keywords.
+"Cat S62 Pro rugged smartphone, WiFi, 4G LTE, for harsh industrial environments and communication.",8517,Telecommunications apparatus,standard,,Clear standard sample: contains primary identifying keywords.
+"Women's delicate crocheted lace vest top, cream, summer style, size L, beachwear.",6109,"T-shirts, singlets and vests — knitted or crocheted",standard,,Clear standard sample: contains primary identifying keywords.
+"Relaxed fit short-sleeve pullover woven linen shirt, styled like a comfortable casual tee.",6205,Men's shirts — not knitted or crocheted (woven),overlapping,6109.0,"WCO GRI Rule 1: A garment described as a 'shirt' in woven fabric is 6205. However, if constructed from jersey or knitted fabric, it reverts to 6109 regardless of styling."
+Rigid ABS plastic document box organizer sized to slot under office chair and beside desk,3926,Other articles of plastics,edge_case,9403.0,Edge case: subject is plastic document box (3926); modifier 'office chair and beside desk' pulls toward furniture 9403.
+"Men's checked flannel shirt, made from woven material, perfect as an overshirt for a plain jersey T-shirt.",6205,Men's shirts — not knitted or crocheted (woven),edge_case,6109.0,Edge case: subject 'flannel shirt' (6205) modified by 'jersey T-shirt' (6109 trap keywords).
+LDPE plastic squeeze bottles condiment dispensing 500ml 6-pack clear,3926,Other articles of plastics,standard,,Clear standard: LDPE + squeeze bottles.
+Verizon Inseego 5G MiFi mobile hotspot router for portable wireless internet access in remote locations.,8517,Telecommunications apparatus,standard,,Clear standard sample: contains primary identifying keywords.
+"Thermal regulating base layer, for colder conditions, made from a stretchable fabric formed by interlocking loops.",6109,"T-shirts, singlets and vests — knitted or crocheted",ambiguous,,Ambiguous: missing primary identifiers 'T-shirt'/'vest' and 'knitted'; inferrable from 'base layer' and 'stretchable fabric formed by interlocking loops'.
+Studio equipment generating high-resolution moving pictures for live public exhibition.,8525,Cameras and broadcast transmission apparatus,ambiguous,,Ambiguous: missing primary identifier 'camera'; inferrable from functional context.
+"A rugged, compact device for capturing high-definition aerial footage during expeditions.",8525,Cameras and broadcast transmission apparatus,ambiguous,,Ambiguous: missing primary identifier 'camera'; inferrable from functional context.
+"Wi-Fi access point providing dedicated bandwidth for security cameras, supporting devices with high megapixel resolution.",8517,Telecommunications apparatus,edge_case,8525.0,"Edge case: subject is 'Wi-Fi access point' (8517); modifier contains 8525 trap keywords ('security cameras', 'megapixel resolution')."
+"Premium men's light green linen shirt, long sleeve, casual button-down style, breathable, size XL.",6205,Men's shirts — not knitted or crocheted (woven),standard,,Clear standard sample: contains primary identifying keywords.
+"Compact mini action camera, 1080p video recorder, lightweight design, with a wide-angle optical lens for FPV drones.",8525,Cameras and broadcast transmission apparatus,standard,,"Clear standard sample: contains primary identifying keywords (action camera, video recorder, optical, lens)."
+"Modern dining table with a sleek tabletop made from molded plastic composite material, suitable for outdoor patios.",9403,Other furniture and parts thereof,edge_case,3926.0,"Edge case: subject is 9403 product; modifier contains 3926 trap keywords (molded, plastic)."
+"Unisex youth red activewear knitted vest, polyester blend, size M, breathable fabric.",6109,"T-shirts, singlets and vests — knitted or crocheted",standard,,Clear standard sample: contains primary identifying keywords.
+Retail display shelf constructed with a lightweight polypropylene frame and injection-molded plastic connecting components for quick assembly.,9403,Other furniture and parts thereof,edge_case,3926.0,"Edge case: subject is 9403 product; modifier contains 3926 trap keywords (polypropylene, injection-molded, plastic)."
+"Articulated toy figures made from synthetic resin, suitable for children's imaginative play.",3926,Other articles of plastics,ambiguous,,Ambiguous: missing primary identifier 'plastic'; inferrable from functional context.
+"Rugged men's green plaid flannel shirt, lumberjack style, button-up front, size L, warm, not knitted.",6205,Men's shirts — not knitted or crocheted (woven),standard,,Clear standard sample: contains primary identifying keywords.
+Smartphone featuring advanced communication capabilities and a built-in 108-megapixel camera with 5x optical zoom.,8517,Telecommunications apparatus,edge_case,8525.0,"Edge case: subject is 'smartphone' (8517); modifier contains 8525 trap keywords ('megapixel camera', 'optical zoom')."
+"Vintage men's brown corduroy button-down shirt, long sleeve, heavy woven fabric, size M, not knitted.",6205,Men's shirts — not knitted or crocheted (woven),standard,,Clear standard sample: contains primary identifying keywords.
+Injection-molded polypropylene storage bins designed to fit inside wardrobe and bookcase shelves,3926,Other articles of plastics,edge_case,9403.0,Edge case: subject is plastic bin (3926); modifier 'wardrobe and bookcase shelves' contains furniture trap keywords from 9403.
+Polypropylene reusable grocery shopping bag reinforced handles foldable compact green,3926,Other articles of plastics,standard,,Clear standard: polypropylene + reusable bag.
+"Compact field broadcast camera with optical zoom, low-latency IP streaming, and integrated intercom for multi-site production.",8525,Cameras and broadcast transmission apparatus,overlapping,8517.0,"WCO GRI Rule 1: Primary function is optical image capture/broadcast (8525), not voice/data transmission (8517), even if device has WiFi or streaming capability."
+"Lightweight, collapsible plastic folding table, perfect for temporary event setups or craft activities.",9403,Other furniture and parts thereof,overlapping,3926.0,"WCO GRI Rule 1: Primary function (furniture/seating/storage as part of household furnishing) takes precedence over material. A plastic outdoor chair is 9403, not 3926."
+"Infant's soft, short-sleeved apparel, crafted from a gentle fabric known for its stretch and easy care.",6109,"T-shirts, singlets and vests — knitted or crocheted",ambiguous,,Ambiguous: missing primary identifiers 'T-shirt' and 'knitted'; inferrable from 'short-sleeved apparel' and 'gentle fabric known for its stretch'.
+Robotic vision system component providing real-time visual input for remote operation or analysis.,8525,Cameras and broadcast transmission apparatus,ambiguous,,Ambiguous: missing primary identifier 'camera'; inferrable from functional context.
+"Lightweight cotton long-sleeve top designed for gentlemen, featuring a spread collar and structured placket.",6205,"Men's or boys' shirts, not knitted or crocheted (woven)",ambiguous,,"Ambiguous: missing primary identifier 'shirt'; inferrable from 'long-sleeve top designed for gentlemen,' 'spread collar,' and 'structured placket' (indicative of woven construction)."
+"Portable digital broadcast transmission apparatus, 1080p video input, for live event streaming.",8525,Cameras and broadcast transmission apparatus,standard,,"Clear standard sample: contains primary identifying keywords (broadcast, transmission apparatus, video)."
+Panasonic DECT 6.0 cordless telephone set with answering machine and two handsets for home use.,8517,Telecommunications apparatus,standard,,Clear standard sample: contains primary identifying keywords.
+"Front and rear automotive dash camera system, 4K video recording, with dual optical lenses and GPS.",8525,Cameras and broadcast transmission apparatus,standard,,"Clear standard sample: contains primary identifying keywords (dash camera, video recording, optical, lenses)."
+"Workwear men's heavy-duty denim shirt, long sleeve, snap button-down, rugged construction, size XXL, not knitted.",6205,Men's shirts — not knitted or crocheted (woven),standard,,Clear standard sample: contains primary identifying keywords.
+Rugged 8K action camera featuring integrated LTE for real-time global broadcast and interactive remote monitoring.,8525,Cameras and broadcast transmission apparatus,overlapping,8517.0,"WCO GRI Rule 1: Primary function is optical image capture/broadcast (8525), not voice/data transmission (8517), even if device has WiFi or streaming capability."
+"Contemporary bed frame with decorative headboard and footboard panels made from durable acrylic, providing a sleek design.",9403,Other furniture and parts thereof,edge_case,3926.0,Edge case: subject is 9403 product; modifier contains 3926 trap keywords (acrylic).
+"Modern oak wood office desk with steel frame, featuring integrated shelving units.",9403,Other furniture and parts thereof,standard,,"Clear standard sample: contains primary identifying keywords (desk, shelving)."
+"Everyday essential top, pure cotton, with a comfortable, rounded neck and short sleeves for all seasons.",6109,"T-shirts, singlets and vests — knitted or crocheted",ambiguous,,"Ambiguous: missing primary identifiers 'T-shirt' and 'knitted'; inferrable from 'essential top', 'rounded neck', 'short sleeves', and common material (cotton)."
+"Durable, brightly colored plastic outdoor dining chair, designed for patio and garden entertaining.",9403,Other furniture and parts thereof,overlapping,3926.0,"WCO GRI Rule 1: Primary function (furniture/seating/storage as part of household furnishing) takes precedence over material. A plastic outdoor chair is 9403, not 3926."
+"Google Nest Wifi Pro mesh router system, 3-pack, white, for whole-home seamless WiFi network coverage.",8517,Telecommunications apparatus,standard,,Clear standard sample: contains primary identifying keywords.
+Polypropylene modular cube bookcase organizer stackable 4-unit set white 30cm cubes,3926,Other articles of plastics,overlapping,9403.0,WCO GRI 3(b): plastic article (3926); modular cube appearance suggests furniture (9403) but classification follows primary material and construction.
+Handheld unit engineered for secure data transfer and interactive media consumption anywhere.,8517,Telecommunications apparatus,ambiguous,,Ambiguous: missing primary identifier 'smartphone'; inferrable from functional context.
+"ComfyCo unisex thermal merino wool knitted vest for layering, charcoal, size S.",6109,"T-shirts, singlets and vests — knitted or crocheted",standard,,Clear standard sample: contains primary identifying keywords.
+"TP-Link Archer AXE75 WiFi 6E tri-band router, for high-speed wireless data transmission via home network.",8517,Telecommunications apparatus,standard,,Clear standard sample: contains primary identifying keywords.
+"Boys' lightweight poplin button-down shirt, long sleeve, graphic print, woven cotton, size 14, not knitted.",6205,Men's shirts — not knitted or crocheted (woven),standard,,Clear standard sample: contains primary identifying keywords.
+"Professional live streaming webcam with advanced autofocus, built-in WiFi 6 for direct platform uploads and two-way audio.",8525,Cameras and broadcast transmission apparatus,overlapping,8517.0,"WCO GRI Rule 1: Primary function is optical image capture/broadcast (8525), not voice/data transmission (8517), even if device has WiFi or streaming capability."
+"Relaxed fit top for home, made of a supple textile with inherent stretch, designed for ultimate comfort.",6109,"T-shirts, singlets and vests — knitted or crocheted",ambiguous,,Ambiguous: missing primary identifiers 'T-shirt' and 'knitted'; inferrable from 'relaxed fit top' and 'supple textile with inherent stretch'.
+"Linksys WAG120N ADSL2+ WiFi router with built-in modem, for residential broadband network connection.",8517,Telecommunications apparatus,standard,,Clear standard sample: contains primary identifying keywords.
