@@ -3,6 +3,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
 from sklearn.metrics import classification_report
+from sklearn.model_selection import train_test_split
+import numpy as np
 import joblib
 import lime
 import lime.lime_text
@@ -19,7 +21,16 @@ def train_and_evaluate():
         X = df["description"]
         y = df["hs_code"].astype(str)
         
-        print("Training TF-IDF + Logistic Regression model...")
+        # Split Data (80% Train, 20% Evaluate)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+        
+        # Save chunks for RAG Engine audit
+        train_df = df.loc[X_train.index]
+        test_df = df.loc[X_test.index]
+        train_df.to_csv("train_dataset.csv", index=False)
+        test_df.to_csv("test_dataset.csv", index=False)
+        
+        print("Training TF-IDF + Logistic Regression model on 80% Train Data...")
         # Create pipeline
         model = make_pipeline(
             TfidfVectorizer(stop_words='english', max_features=1000, ngram_range=(1, 2)),
@@ -27,12 +38,20 @@ def train_and_evaluate():
         )
         
         # Train model
-        model.fit(X, y)
+        model.fit(X_train, y_train)
         
-        # Evaluate model (Testing on train data just for baseline since dataset is small)
-        preds = model.predict(X)
-        print("\n--- Classification Report ---")
-        print(classification_report(y, preds))
+        # Evaluate model (Testing on unseen 20% Test Data)
+        preds = model.predict(X_test)
+        print(f"\n--- Classification Report ({len(X_test)} Unseen Edge Cases) ---")
+        print(classification_report(y_test, preds))
+        
+        probs = model.predict_proba(X_test)
+        top3_preds = [model.classes_[np.argsort(prob)[-3:]] for prob in probs]
+        top3_correct = sum([1 if true_y in preds else 0 for true_y, preds in zip(y_test, top3_preds)])
+        top3_acc = top3_correct / len(y_test)
+        
+        print(f"Top-1 Accuracy: {model.score(X_test, y_test):.2%}")
+        print(f"Top-3 Accuracy: {top3_acc:.2%}")
         
         # Save model
         joblib.dump(model, "hs_model.joblib")
