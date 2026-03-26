@@ -1,0 +1,101 @@
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import make_pipeline
+from sklearn.metrics import classification_report
+import joblib
+import lime
+import lime.lime_text
+
+def train_and_evaluate():
+    try:
+        df = pd.DataFrame()
+        try:
+            df = pd.read_csv("synthetic_customs_data.csv")
+        except:
+            print("Data not found. Did you run generate_data.py?")
+            return
+            
+        X = df["description"]
+        y = df["hs_code"].astype(str)
+        
+        print("Training TF-IDF + Logistic Regression model...")
+        # Create pipeline
+        model = make_pipeline(
+            TfidfVectorizer(stop_words='english', max_features=1000, ngram_range=(1, 2)),
+            LogisticRegression(C=10.0, max_iter=1000, class_weight='balanced', random_state=42)
+        )
+        
+        # Train model
+        model.fit(X, y)
+        
+        # Evaluate model (Testing on train data just for baseline since dataset is small)
+        preds = model.predict(X)
+        print("\n--- Classification Report ---")
+        print(classification_report(y, preds))
+        
+        # Save model
+        joblib.dump(model, "hs_model.joblib")
+        print("Model saved to hs_model.joblib")
+        
+        return model
+        
+    except Exception as e:
+        print(f"Error during training: {e}")
+
+def predict_query(model, query):
+    print(f"\n[QUERY]: {query}")
+    
+    # Probabilities
+    probs = model.predict_proba([query])[0]
+    classes = model.classes_
+    
+    # Sort top 3
+    top3_indices = probs.argsort()[-3:][::-1]
+    
+    top1_class = classes[top3_indices[0]]
+    top1_prob = probs[top3_indices[0]]
+    
+    print("\n--- Top 3 Predictions ---")
+    for idx in top3_indices:
+        print(f"HS Code {classes[idx]}: {probs[idx]:.2%}")
+        
+    # Ambiguity Check
+    if top1_prob < 0.6:
+        print("\n⚠️ [AMBIGUITY ALERT]: The confidence is below 60%. Please consider the top 3 options or consult an expert.")
+    
+    # Explainability using LIME
+    print("\n--- Explanation ---")
+    explainer = lime.lime_text.LimeTextExplainer(class_names=classes)
+    
+    # We create a prediction function for LIME that outputs probabilities
+    def predict_proba_lime(texts):
+        return model.predict_proba(texts)
+        
+    # Explain the instance for the top predicted class
+    top1_idx_in_classes = list(classes).index(top1_class)
+    exp = explainer.explain_instance(query, predict_proba_lime, num_features=5, top_labels=1)
+    
+    # Extract the features that contributed to the top class
+    try:
+        contributions = exp.as_list(label=top1_idx_in_classes)
+        print(f"Why was {top1_class} chosen?")
+        for word, weight in contributions:
+            direction = "Supports" if weight > 0 else "Opposes"
+            print(f"- '{word.strip()}': {direction} (weight: {weight:.4f})")
+    except KeyError:
+        # Fallback if label is string vs int issue
+        print(f"LIME extracted terms for context: {exp.as_list()}")
+
+if __name__ == "__main__":
+    model = train_and_evaluate()
+    if model:
+        print("\nTesting Inference...")
+        test_queries = [
+            "Apple iPhone 14 Pro Max 256GB Black Smartphone, new in box",
+            "Wooden dining table set with 4 chairs oak finish",
+            "Men's casual collar shirt short sleeve cotton blend", # Ambiguous case (Woven/Knitted overlap)
+        ]
+        
+        for q in test_queries:
+            predict_query(model, q)

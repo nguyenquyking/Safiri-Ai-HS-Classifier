@@ -1,0 +1,30 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment Variables (Bảo mật tuyệt đối Không push file này)
+.env
+*.env
+
+# Python caching
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Models and large files (Tùy chọn: Bạn có thể bỏ comment dòng joblib nếu file model quá nặng, nhưng hiện tại file hs_model.joblib của bạn rất nhẹ nên cứ để push lên bình thường)
+# *.joblib
+# *.h5
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
