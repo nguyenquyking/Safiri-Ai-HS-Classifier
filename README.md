@@ -13,12 +13,11 @@ The project is organized into a modular, professional structure to ensure code q
 ├── apps/               # Front-end Applications (Gradio)
 │   ├── main_rag/       # Main Generative RAG + LLM App (Port 7861)
 │   └── baseline_ml/    # Traditional ML Baseline App (Port 7860)
-├── core/               # Core Logic & Engines
-│   ├── rag/            # Semantic Vector Search Engine
-│   ├── ml/             # ML Model Training & Serialization
-│   └── utils/          # Auxiliary processing tools (PDF)
-├── data/               # Data Management
-│   ├── raw/            # Source PDF and raw CSV data
+├── src/                # Core Logic (The Engines)
+│   ├── rag/            # Semantic Vector Search Engine (SBERT)
+│   └── ml/             # ML Training & Models (TF-IDF + Logistic Reg)
+├── data/               # Data Warehouse
+│   ├── raw/            # Artificial Intelligence Base Data (WCO)
 │   ├── processed/      # Cleaned Train/Test Datasets
 │   └── generate_data.py# Synthetic Data Generation Tool
 ├── evaluation/         # Testing & Metrics
