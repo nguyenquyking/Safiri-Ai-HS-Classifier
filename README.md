@@ -4,6 +4,14 @@ An advanced, dual-architecture AI classification system designed to predict Harm
 
 ---
 
+## 🎬 Video Demo
+
+[![Safiri AI HS Code Classifier Demo](https://img.youtube.com/vi/NcHQ2d7NQZI/0.jpg)](https://www.youtube.com/watch?v=NcHQ2d7NQZI)
+
+*Click the image above to watch the full system demonstration on YouTube.*
+
+---
+
 ## 🏗️ Project Architecture
 
 The project is organized into a modular, professional structure to ensure code quality, scalability, and clear separation of concerns:
