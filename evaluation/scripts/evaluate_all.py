@@ -18,11 +18,13 @@ from sklearn.metrics import classification_report, confusion_matrix
 import google.generativeai as genai
 from dotenv import load_dotenv
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from rag_engine import RAGEngine
+# Setup path to allow imports from the root src directory
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+from src.rag.rag_engine import RAGEngine
 
-# Load environment variables from .env file
-load_dotenv()
+# Load environment variables from the root .env file
+env_path = os.path.join(os.path.dirname(__file__), '../../.env')
+load_dotenv(dotenv_path=env_path)
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Arbiter Engine (Method 1b Component - Batch Processing)
@@ -88,10 +90,17 @@ No explanations. No other text. Just the JSON.
 # ─────────────────────────────────────────────────────────────────────────────
 
 print("Initializing Evaluation Framework...")
-ml_model = joblib.load("../Method2_Traditional_ML/hs_model.joblib")
-engine = RAGEngine(data_path="../Method2_Traditional_ML/train_dataset.csv")
+base_dir = os.path.dirname(os.path.abspath(__file__))
+ml_model_path = os.path.join(base_dir, "../../src/ml/hs_model.joblib")
+ml_model = joblib.load(ml_model_path)
+
+train_data_path = os.path.join(base_dir, "../../data/processed/train_dataset.csv")
+engine = RAGEngine(data_path=train_data_path)
+
 arbiter = SemanticArbiter()
-test_df = pd.read_csv("../Method2_Traditional_ML/test_dataset.csv")
+
+test_data_path = os.path.join(base_dir, "../../data/processed/test_dataset.csv")
+test_df = pd.read_csv(test_data_path)
 n = len(test_df)
 
 processed_data = []
@@ -254,6 +263,7 @@ for _, r in df.iterrows():
     lines.append(f"  {r['query']:<62} | {r['true']:<4} | {r['sample_type']:<11} | {m_st:<10} | {v_st:<10} | {l_st:<10}")
 lines += [SEP]
 
-with open("evaluation_report.txt", "w", encoding="utf-8") as f:
+report_path = os.path.join(base_dir, "../reports/evaluation_report.txt")
+with open(report_path, "w", encoding="utf-8") as f:
     f.write("\n".join(lines))
 print(f"\nEvaluation Complete. Batch report saved to evaluation_report.txt")

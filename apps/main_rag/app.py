@@ -1,12 +1,18 @@
-import gradio as gr
-from rag_engine import RAGEngine
-import google.generativeai as genai
+import sys
 import os
 import json
+import gradio as gr
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
-load_dotenv()
+# Setup path to allow imports from the root src directory
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+from src.rag.rag_engine import RAGEngine
+
+import google.generativeai as genai
+
+# Load environment variables from the root .env file
+env_path = os.path.join(os.path.dirname(__file__), '../../.env')
+load_dotenv(dotenv_path=env_path)
 
 try:
     engine = RAGEngine()

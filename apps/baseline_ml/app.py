@@ -1,14 +1,18 @@
-import gradio as gr
+import os
 import joblib
+import gradio as gr
 import lime
 import lime.lime_text
 
-# Load the trained model
+# Load the trained model using a relative path
+base_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(base_dir, "../../src/ml/hs_model.joblib")
+
 try:
-    model = joblib.load("hs_model.joblib")
+    model = joblib.load(model_path)
 except Exception as e:
     model = None
-    print("Warning: Model not found. Please run train_model.py first.")
+    print(f"Warning: Model not found at {model_path}. Please check src/ml/ directory.")
 
 def predict_hs_code(query):
     if not model:

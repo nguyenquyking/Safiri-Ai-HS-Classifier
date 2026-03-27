@@ -18,8 +18,8 @@ import pandas as pd
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Load API key from Method1_RAG/.env
-env_path = Path(__file__).parent.parent / "Method1_RAG" / ".env"
+# Load API key from root .env
+env_path = Path(__file__).parent / "../.env"
 load_dotenv(dotenv_path=env_path)
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
 
@@ -315,17 +315,14 @@ def generate_dataset():
     df = df.sample(frac=1, random_state=42).reset_index(drop=True)
 
     # Save outputs
-    out_m2 = Path(__file__).parent / "synthetic_customs_data.csv"
-    out_m1 = Path(__file__).parent.parent / "Method1_RAG" / "synthetic_customs_data.csv"
+    out_raw = Path(__file__).parent / "raw" / "synthetic_customs_data.csv"
 
-    df.to_csv(out_m2, index=False)
-    df.to_csv(out_m1, index=False)
+    df.to_csv(out_raw, index=False)
 
     print(f"\n{'='*60}")
     print(f"Dataset generated successfully!")
     print(f"  Total samples   : {len(df)}")
-    print(f"  Saved to        : {out_m2}")
-    print(f"  Synced to       : {out_m1}")
+    print(f"  Saved to        : {out_raw}")
     print(f"\nDistribution by sample_type:")
     print(df.groupby(["hs_code", "sample_type"]).size().to_string())
     print(f"{'='*60}\n")

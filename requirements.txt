@@ -1,0 +1,8 @@
+pandas
+sentence-transformers
+scikit-learn
+google-generativeai
+gradio
+joblib
+lime
+python-dotenv

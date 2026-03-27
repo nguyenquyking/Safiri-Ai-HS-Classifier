@@ -1,11 +1,17 @@
+import os
 import pandas as pd
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
 class RAGEngine:
-    def __init__(self, data_path="synthetic_customs_data.csv"):
-        print("Loading SentenceTransformer model 'all-MiniLM-L6-v2'...")
+    def __init__(self, data_path=None):
+        if data_path is None:
+            # Default to processed data directory relative to this file
+            base_dir = os.path.dirname(os.path.abspath(__file__))
+            data_path = os.path.join(base_dir, "../../data/processed/train_dataset.csv")
+            
+        print(f"Initializing RAG Engine with data: {data_path}")
         # L6-v2 is ultra fast and great for semantic sentences
         self.model = SentenceTransformer('all-MiniLM-L6-v2')
         

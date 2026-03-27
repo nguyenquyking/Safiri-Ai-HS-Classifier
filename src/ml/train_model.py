@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
@@ -9,13 +10,18 @@ import joblib
 import lime
 import lime.lime_text
 
+# Define base directory relative to this script
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 def train_and_evaluate():
     try:
         df = pd.DataFrame()
         try:
-            df = pd.read_csv("synthetic_customs_data.csv")
+            raw_data_path = os.path.join(BASE_DIR, "../../data/raw/synthetic_customs_data.csv")
+            df = pd.read_csv(raw_data_path)
+            print(f"Loaded raw data from: {raw_data_path}")
         except:
-            print("Data not found. Did you run generate_data.py?")
+            print(f"Data not found at {raw_data_path}. Did you run generate_data.py?")
             return
             
         X = df["description"]
@@ -27,8 +33,11 @@ def train_and_evaluate():
         # Save chunks for RAG Engine audit
         train_df = df.loc[X_train.index]
         test_df = df.loc[X_test.index]
-        train_df.to_csv("train_dataset.csv", index=False)
-        test_df.to_csv("test_dataset.csv", index=False)
+        train_out = os.path.join(BASE_DIR, "../../data/processed/train_dataset.csv")
+        test_out = os.path.join(BASE_DIR, "../../data/processed/test_dataset.csv")
+        train_df.to_csv(train_out, index=False)
+        test_df.to_csv(test_out, index=False)
+        print(f"Datasets saved to {os.path.dirname(train_out)}")
         
         print("Training TF-IDF + Logistic Regression model on 80% Train Data...")
         # Create pipeline
@@ -54,8 +63,9 @@ def train_and_evaluate():
         print(f"Top-3 Accuracy: {top3_acc:.2%}")
         
         # Save model
-        joblib.dump(model, "hs_model.joblib")
-        print("Model saved to hs_model.joblib")
+        model_out = os.path.join(BASE_DIR, "hs_model.joblib")
+        joblib.dump(model, model_out)
+        print(f"Model saved to {model_out}")
         
         return model
         
