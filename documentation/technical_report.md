@@ -8,7 +8,7 @@ This report describes the architecture, design decisions, and performance of the
 ## 2. Approach and Methodology
 
 ### 2.1 Layered Intelligence Architecture
-The core philosophy of our approach is to separate **Statistical Relevance** from **Semantic Reasoning**.
+The core philosophy of my approach is to separate **Statistical Relevance** from **Semantic Reasoning**.
 
 1.  **Layer 1: Semantic Vector Retriever (Method 1a)**
     - **Engine**: uses `Sentence-Transformers (all-MiniLM-L6-v2)`.
@@ -90,4 +90,4 @@ The Gemini re-ranked system understands that the "iPhone" is just a modifier and
 ---
 
 ## 7. Conclusion
-The mission was to create a "focused and clearly justified" solution. By combining the speed of Vector Search with the "Expert Intelligence" of Gemini, we have built a system that doesn't just match keywords but **understands products**. The 98% accuracy on adversarial data proves that semantic reasoning is the superior path for complex customs classification.
+The mission was to create a "focused and clearly justified" solution. By combining the speed of Vector Search with the "Expert Intelligence" of Gemini, I have built a system that doesn't just match keywords but **understands products**. The 98% accuracy on adversarial data proves that semantic reasoning is the superior path for complex customs classification.

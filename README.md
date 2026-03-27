@@ -67,7 +67,7 @@ python apps/baseline_ml/app.py
 
 ## 📊 Dataset & AI Data Generation
 
-To ensure the system handles real-world complexity, we utilized an **AI-Driven Synthetic Data Engine** (`data/generate_data.py`) to create a high-fidelity dataset based on official **WCO (World Customs Organization)** taxonomies.
+To ensure the system handles real-world complexity, I utilized an **AI-Driven Synthetic Data Engine** (`data/generate_data.py`) to create a high-fidelity dataset based on official **WCO (World Customs Organization)** taxonomies.
 
 ### Data Composition
 The dataset consists of **252 unique samples** across 6 HS classes, with 4 distinct difficulty levels:
@@ -83,7 +83,7 @@ The dataset consists of **252 unique samples** across 6 HS classes, with 4 disti
 
 ## 📈 Detailed Performance Analysis
 
-Our evaluation framework (`evaluation/scripts/evaluate_all.py`) provides deep insights into how the hybrid RAG architecture outperforms traditional baselines.
+My evaluation framework (`evaluation/scripts/evaluate_all.py`) provides deep insights into how the hybrid RAG architecture outperforms traditional baselines.
 
 ### Accuracy by Sample Type (Test Set)
 | Type | N | ML Baseline | Vector RAG | **LLM Re-Ranking** |
