@@ -65,6 +65,41 @@ python apps/baseline_ml/app.py
 
 ---
 
+## 📊 Dataset & AI Data Generation
+
+To ensure the system handles real-world complexity, we utilized an **AI-Driven Synthetic Data Engine** (`data/generate_data.py`) to create a high-fidelity dataset based on official **WCO (World Customs Organization)** taxonomies.
+
+### Data Composition
+The dataset consists of **252 unique samples** across 6 HS classes, with 4 distinct difficulty levels:
+
+| Sample Type | Description | N |
+| :--- | :--- | :---: |
+| **Standard** | Clear, unambiguous product descriptions with primary keywords. | 120 |
+| **Ambiguous** | Descriptions where primary identifying keywords are intentionally omitted. | 60 |
+| **Overlapping** | Products that genuinely straddle the boundary between two similar HS codes. | 36 |
+| **Edge Case** | Adversarial descriptions where modifiers act as "traps" for keyword-based models. | 36 |
+
+---
+
+## 📈 Detailed Performance Analysis
+
+Our evaluation framework (`evaluation/scripts/evaluate_all.py`) provides deep insights into how the hybrid RAG architecture outperforms traditional baselines.
+
+### Accuracy by Sample Type (Test Set)
+| Type | N | ML Baseline | Vector RAG | **LLM Re-Ranking** |
+| :--- | :---: | :---: | :---: | :---: |
+| **Standard** | 24 | 95.8% | 91.7% | **100.0%** |
+| **Ambiguous** | 11 | 63.6% | 81.8% | **100.0%** |
+| **Overlapping** | 8 | 75.0% | 100.0% | 87.5% |
+| **Edge Case** | 8 | 50.0% | 62.5% | **100.0%** |
+
+### Agentic Pipeline Insights
+- **Override Rate (15.7%)**: The LLM autonomously decided to change the initial Vector Search prediction in ~16% of cases.
+- **Correction Rate (87.5%)**: When the LLM chose to override, it was correct **87.5%** of the time, effectively "saving" the system from vector retrieval errors.
+- **Mean Reciprocal Rank (MRR)**: The Vector Engine achieved an MRR of **0.92**, indicating the correct code is almost always in the Top 2 results.
+
+---
+
 ## 📊 Evaluation & Verification
 
 To verify the system performance across all architectures (ML vs RAG vs LLM), run the unified evaluation script:
