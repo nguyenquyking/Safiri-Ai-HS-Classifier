@@ -43,7 +43,7 @@ A keyword-based model (Method 2) is heavily skewed by high-weight terms like **"
 ### 4.1 Label Assignment
 Labels were assigned using an AI-driven generation engine initialized with official **WCO (World Customs Organization)** taxonomy descriptions.
 - **Process**: For each target HS code, Gemini was prompted to generate descriptions across 4 tiers of difficulty.
-- **Validation**: All generated labels were mapped to the validated 4-to-6 digit HS codes provided in the challenge dataset.
+- **Validation**: All generated labels were mapped to the validated **4-digit HS codes** provided in the challenge scope.
 
 ### 4.2 Sample Characteristics
 The dataset (252 samples) was split 80/20. The test set was intentionally weighted toward difficult cases:
