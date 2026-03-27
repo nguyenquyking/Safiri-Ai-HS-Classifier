@@ -1,122 +1,154 @@
-SAFIRI AI — UNIFIED HS CODE CLASSIFICATION EVALUATION REPORT
-Dataset : 252 AI-generated samples (WCO-validated, Gemini-authored)
-Split   : 80% Train (201) / 20% Test (51, stratified by hs_code)
-Methods : TF-IDF + Logistic Regression (ML) vs SentenceTransformer Cosine (RAG Vector)
-
-NOTE: The test set naturally contains all 4 sample types (standard / ambiguous /
-overlapping / edge_case), providing a realistic, multi-difficulty evaluation.
-
+SAFIRI AI — UNIFIED HS CODE CLASSIFICATION EVALUATION REPORT (BATCH MODE)
+Dataset : AI-Enhanced WCO Taxonomy (252 samples)
+Split   : 80% Train (201) / 20% Test (51, stratified)
+LLM     : gemini-2.5-flash (Batched Processing)
 
 ===================================================================================================================
-  SECTION 1: FULL TEST SET RESULTS (51 samples)
+  SECTION 0: OVERALL ACCURACY SUMMARY
 ===================================================================================================================
-Query                                                 | True | Type        | ML   Result | Vector Result
+  Metric                                        |  Method 2 (ML) | Method 1a (RAG) |      Method 1b (LLM)
 -------------------------------------------------------------------------------------------------------------------
-Vintage pine wood bookcase with glass doors, a dis... | 9403 | standard    | 9403  PASS  | 9403  PASS
-Compact dark wood bedside table, a nightstand furn... | 9403 | standard    | 9403  PASS  | 9403  PASS
-Polypropylene 3-step folding step stool anti-slip ... | 3926 | standard    | 3926  PASS  | 3926  PASS
-Lightweight outdoor activity top, featuring short ... | 6109 | ambiguous   | 6109  PASS  | 6109  PASS
-Large injection-molded polypropylene storage cabin... | 3926 | overlapping | 3926  PASS  | 3926  PASS
-Formal men's striped dress shirt, woven poplin fab... | 6205 | standard    | 6205  PASS  | 6205  PASS
-Cat S62 Pro rugged smartphone, WiFi, 4G LTE, for h... | 8517 | standard    | 8517  PASS  | 8517  PASS
-Women's delicate crocheted lace vest top, cream, s... | 6109 | standard    | 6109  PASS  | 6109  PASS
-Relaxed fit short-sleeve pullover woven linen shir... | 6205 | overlapping | 6205  PASS  | 6205  PASS
-Rigid ABS plastic document box organizer sized to ... | 3926 | edge_case   | 3926  PASS  | 3926  PASS
-Men's checked flannel shirt, made from woven mater... | 6205 | edge_case   | 6205  PASS  | 6205  PASS
-LDPE plastic squeeze bottles condiment dispensing ... | 3926 | standard    | 3926  PASS  | 3926  PASS
-Verizon Inseego 5G MiFi mobile hotspot router for ... | 8517 | standard    | 8517  PASS  | 8517  PASS
-Thermal regulating base layer, for colder conditio... | 6109 | ambiguous   | 9403  FAIL  | 6109  PASS
-Studio equipment generating high-resolution moving... | 8525 | ambiguous   | 8525  PASS  | 8525  PASS
-A rugged, compact device for capturing high-defini... | 8525 | ambiguous   | 8525  PASS  | 8525  PASS
-Wi-Fi access point providing dedicated bandwidth f... | 8517 | edge_case   | 8525  FAIL  | 8525  FAIL
-Premium men's light green linen shirt, long sleeve... | 6205 | standard    | 6205  PASS  | 6109  FAIL
-Compact mini action camera, 1080p video recorder, ... | 8525 | standard    | 8525  PASS  | 8525  PASS
-Modern dining table with a sleek tabletop made fro... | 9403 | edge_case   | 9403  PASS  | 9403  PASS
-Unisex youth red activewear knitted vest, polyeste... | 6109 | standard    | 6109  PASS  | 6109  PASS
-Retail display shelf constructed with a lightweigh... | 9403 | edge_case   | 3926  FAIL  | 3926  FAIL
-Articulated toy figures made from synthetic resin,... | 3926 | ambiguous   | 9403  FAIL  | 6109  FAIL
-Rugged men's green plaid flannel shirt, lumberjack... | 6205 | standard    | 6205  PASS  | 6205  PASS
-Smartphone featuring advanced communication capabi... | 8517 | edge_case   | 8525  FAIL  | 8517  PASS
-Vintage men's brown corduroy button-down shirt, lo... | 6205 | standard    | 6205  PASS  | 6205  PASS
-Injection-molded polypropylene storage bins design... | 3926 | edge_case   | 3926  PASS  | 3926  PASS
-Polypropylene reusable grocery shopping bag reinfo... | 3926 | standard    | 3926  PASS  | 3926  PASS
-Compact field broadcast camera with optical zoom, ... | 8525 | overlapping | 8525  PASS  | 8525  PASS
-Lightweight, collapsible plastic folding table, pe... | 9403 | overlapping | 9403  PASS  | 9403  PASS
-Infant's soft, short-sleeved apparel, crafted from... | 6109 | ambiguous   | 6109  PASS  | 6109  PASS
-Robotic vision system component providing real-tim... | 8525 | ambiguous   | 8525  PASS  | 8525  PASS
-Lightweight cotton long-sleeve top designed for ge... | 6205 | ambiguous   | 6205  PASS  | 6109  FAIL
-Portable digital broadcast transmission apparatus,... | 8525 | standard    | 8525  PASS  | 8525  PASS
-Panasonic DECT 6.0 cordless telephone set with ans... | 8517 | standard    | 9403  FAIL  | 8517  PASS
-Front and rear automotive dash camera system, 4K v... | 8525 | standard    | 8525  PASS  | 8525  PASS
-Workwear men's heavy-duty denim shirt, long sleeve... | 6205 | standard    | 6205  PASS  | 6109  FAIL
-Rugged 8K action camera featuring integrated LTE f... | 8525 | overlapping | 8525  PASS  | 8525  PASS
-Contemporary bed frame with decorative headboard a... | 9403 | edge_case   | 3926  FAIL  | 3926  FAIL
-Modern oak wood office desk with steel frame, feat... | 9403 | standard    | 9403  PASS  | 9403  PASS
-Everyday essential top, pure cotton, with a comfor... | 6109 | ambiguous   | 6109  PASS  | 6109  PASS
-Durable, brightly colored plastic outdoor dining c... | 9403 | overlapping | 3926  FAIL  | 9403  PASS
-Google Nest Wifi Pro mesh router system, 3-pack, w... | 8517 | standard    | 8517  PASS  | 8517  PASS
-Polypropylene modular cube bookcase organizer stac... | 3926 | overlapping | 3926  PASS  | 3926  PASS
-Handheld unit engineered for secure data transfer ... | 8517 | ambiguous   | 8525  FAIL  | 8517  PASS
-ComfyCo unisex thermal merino wool knitted vest fo... | 6109 | standard    | 6109  PASS  | 6109  PASS
-TP-Link Archer AXE75 WiFi 6E tri-band router, for ... | 8517 | standard    | 8517  PASS  | 8517  PASS
-Boys' lightweight poplin button-down shirt, long s... | 6205 | standard    | 6205  PASS  | 6205  PASS
-Professional live streaming webcam with advanced a... | 8525 | overlapping | 8517  FAIL  | 8525  PASS
-Relaxed fit top for home, made of a supple textile... | 6109 | ambiguous   | 6205  FAIL  | 6109  PASS
-Linksys WAG120N ADSL2+ WiFi router with built-in m... | 8517 | standard    | 8517  PASS  | 8517  PASS
+  Top-1 Accuracy                                |          78.4% |           86.3% |                98.0%
+  Top-3 Accuracy (ML) / Recall@3 (RAG)          |         100.0% |          100.0% |                    —
+  Recall@1                                      |        = Top-1 |           86.3% |                   --
+  Recall@5                                      |             -- |          100.0% |                   --
+  Mean Reciprocal Rank (MRR)                    |             -- | 0.9216          |                   --
+===================================================================================================================
+
+===================================================================================================================
+  SECTION 1: ACCURACY BY SAMPLE TYPE
+===================================================================================================================
+  Type          |   N |  ML Top-1 |  ML Top-3 |  Vec Top-1 |  Recall@3 | LLM Accuracy |    MRR
 -------------------------------------------------------------------------------------------------------------------
-  Overall  =>  ML Baseline: 78%  (40/51)   |   RAG Vector: 86%  (44/51)
+  standard      |  24 |     95.8% |    100.0% |      91.7% |    100.0% |       100.0% | 0.9444
+  ambiguous     |  11 |     63.6% |    100.0% |      81.8% |    100.0% |       100.0% | 0.9091
+  overlapping   |   8 |     75.0% |    100.0% |     100.0% |    100.0% |        87.5% | 1.0000
+  edge_case     |   8 |     50.0% |    100.0% |      62.5% |    100.0% |       100.0% | 0.7917
 ===================================================================================================================
 
 ===================================================================================================================
-  SECTION 2: ACCURACY BREAKDOWN BY SAMPLE TYPE
-  (This reveals WHICH difficulty level each architecture struggles with)
+  SECTION 2: ACCURACY BY HS CODE CLASS
 ===================================================================================================================
-  Sample Type     | # Samples | ML Accuracy | Vector Accuracy | Winner
+    HS   | Category                            |   N |  ML Top-1 |  Vec Top-1 |  Recall@3 |          LLM |    MRR
 -------------------------------------------------------------------------------------------------------------------
-  standard        |        24 |         96% |             92% | ML
-  ambiguous       |        11 |         64% |             82% | Vector
-  overlapping     |         8 |         75% |            100% | Vector
-  edge_case       |         8 |         50% |             62% | Vector
+  3926 | Other articles of plastics          |   8 |     87.5% |      87.5% |    100.0% |        87.5% | 0.9375
+  6109 | T-shirts / singlets (knitted)       |   8 |     75.0% |     100.0% |    100.0% |       100.0% | 1.0000
+  6205 | Shirts (woven, not knitted)         |   9 |    100.0% |      66.7% |    100.0% |       100.0% | 0.7963
+  8517 | Telecommunications apparatus        |   9 |     55.6% |      88.9% |    100.0% |       100.0% | 0.9259
+  8525 | Cameras & broadcast equipment       |   9 |     88.9% |     100.0% |    100.0% |       100.0% | 1.0000
+  9403 | Other furniture                     |   8 |     62.5% |      75.0% |    100.0% |       100.0% | 0.8750
+===================================================================================================================
+
+===================================================================================================================
+  SECTION 3: RAG + LLM PIPELINE METRICS (BATCH)
+===================================================================================================================
+  LLM Top-1 Accuracy    : 98.0%  (50/51)
+  Override Rate         : 15.7%  (8/51)
+  Correction Rate       : 87.5%  (7/8)
+  LLM Error Rate        : 12.5%  (1/8)
+===================================================================================================================
+
+===================================================================================================================
+  SECTION 4: CONFUSION MATRIX — ML BASELINE
+===================================================================================================================
+  Actual \ Pred  |  3926 |  6109 |  6205 |  8517 |  8525 |  9403
 -------------------------------------------------------------------------------------------------------------------
-  TOTAL           |        51 |         78% |             86% |
+  3926            |     7 |     0 |     0 |     0 |     0 |     1
+  6109            |     0 |     6 |     1 |     0 |     0 |     1
+  6205            |     0 |     0 |     9 |     0 |     0 |     0
+  8517            |     0 |     0 |     0 |     5 |     3 |     1
+  8525            |     0 |     0 |     0 |     1 |     8 |     0
+  9403            |     3 |     0 |     0 |     0 |     0 |     5
 ===================================================================================================================
 
 ===================================================================================================================
-  SECTION 3: ACCURACY BY HS CODE CLASS (ML vs Vector)
+  SECTION 5: PRECISION / RECALL / F1
 ===================================================================================================================
-  HS Code  | Category                            | # Test |     ML |   Vector
+  Method 2 — Traditional ML
 -------------------------------------------------------------------------------------------------------------------
-  8517     | Telecommunications apparatus        |      9 |    56% |      89%
-  8525     | Cameras & broadcast equipment       |      9 |    89% |     100%
-  6109     | T-shirts / singlets (knitted)       |      8 |    75% |     100%
-  6205     | Shirts (woven, not knitted)         |      9 |   100% |      67%
-  9403     | Other furniture                     |      8 |    62% |      75%
-  3926     | Other articles of plastics          |      8 |    88% |      88%
+                  precision    recall  f1-score   support
+    
+            3926       0.70      0.88      0.78         8
+            6109       1.00      0.75      0.86         8
+            6205       0.90      1.00      0.95         9
+            8517       0.83      0.56      0.67         9
+            8525       0.73      0.89      0.80         9
+            9403       0.62      0.62      0.62         8
+    
+        accuracy                           0.78        51
+       macro avg       0.80      0.78      0.78        51
+    weighted avg       0.80      0.78      0.78        51
+
+  Method 1b — RAG + LLM (Batch)
 -------------------------------------------------------------------------------------------------------------------
+                  precision    recall  f1-score   support
+    
+            3926       1.00      0.88      0.93         8
+            6109       1.00      1.00      1.00         8
+            6205       1.00      1.00      1.00         9
+            8517       1.00      1.00      1.00         9
+            8525       1.00      1.00      1.00         9
+            9403       0.89      1.00      0.94         8
+    
+        accuracy                           0.98        51
+       macro avg       0.98      0.98      0.98        51
+    weighted avg       0.98      0.98      0.98        51
 ===================================================================================================================
 
 ===================================================================================================================
-  SECTION 4: INTERPRETATION & CONCLUSIONS
+  SECTION 6: FULL ROW-BY-ROW PREDICTIONS
 ===================================================================================================================
-
-  1. STANDARD samples: Both models achieve high accuracy on clear, keyword-rich
-     descriptions — confirming the pipeline is not underfitting.
-
-  2. AMBIGUOUS samples: Vector Search outperforms ML Baseline because semantic
-     embeddings capture meaning even when primary identifiers are absent.
-     TF-IDF fails here due to Keyword Rigidity.
-
-  3. OVERLAPPING samples: Both models show reduced accuracy — this reflects the
-     genuine boundary difficulty acknowledged in WCO classification rules.
-     The Generative LLM layer (not measured here to conserve API quota) provides
-     grammar-aware re-ranking that resolves most overlapping cases.
-
-  4. EDGE CASE samples: ML Baseline degrades most severely here. The adversarial
-     modifier keywords overpower TF-IDF's frequency counting. RAG Vector Search
-     partially mitigates this via semantic proximity. Full resolution requires
-     the LLM Grammar Parser (Gemini) to identify the grammatical subject.
-
-  CONCLUSION: The Generative RAG architecture (Vector + LLM) is the most robust
-  system for real-world HS classification. The sample_type breakdown proves that
-  complexity is WHERE the ML baseline breaks, not merely HOW MUCH it breaks.
+  Query                                                          | True | Type        | ML         | Vec        | LLM       
+-------------------------------------------------------------------------------------------------------------------
+  Vintage pine wood bookcase with glass doors, a display cabin... | 9403 | standard    | 9403 OK    | 9403 OK    | 9403 OK   
+  Compact dark wood bedside table, a nightstand furniture piec... | 9403 | standard    | 9403 OK    | 9403 OK    | 9403 OK   
+  Polypropylene 3-step folding step stool anti-slip treads 150... | 3926 | standard    | 3926 OK    | 3926 OK    | 3926 OK   
+  Lightweight outdoor activity top, featuring short sleeves an... | 6109 | ambiguous   | 6109 OK    | 6109 OK    | 6109 OK   
+  Large injection-molded polypropylene storage cabinet 5-shelf... | 3926 | overlapping | 3926 OK    | 3926 OK    | 9403 XX   
+  Formal men's striped dress shirt, woven poplin fabric, regul... | 6205 | standard    | 6205 OK    | 6205 OK    | 6205 OK   
+  Cat S62 Pro rugged smartphone, WiFi, 4G LTE, for harsh indus... | 8517 | standard    | 8517 OK    | 8517 OK    | 8517 OK   
+  Women's delicate crocheted lace vest top, cream, summer styl... | 6109 | standard    | 6109 OK    | 6109 OK    | 6109 OK   
+  Relaxed fit short-sleeve pullover woven linen shirt, styled ... | 6205 | overlapping | 6205 OK    | 6205 OK    | 6205 OK   
+  Rigid ABS plastic document box organizer sized to slot under... | 3926 | edge_case   | 3926 OK    | 3926 OK    | 3926 OK   
+  Men's checked flannel shirt, made from woven material, perfe... | 6205 | edge_case   | 6205 OK    | 6205 OK    | 6205 OK   
+  LDPE plastic squeeze bottles condiment dispensing 500ml 6-pa... | 3926 | standard    | 3926 OK    | 3926 OK    | 3926 OK   
+  Verizon Inseego 5G MiFi mobile hotspot router for portable w... | 8517 | standard    | 8517 OK    | 8517 OK    | 8517 OK   
+  Thermal regulating base layer, for colder conditions, made f... | 6109 | ambiguous   | 9403 XX    | 6109 OK    | 6109 OK   
+  Studio equipment generating high-resolution moving pictures ... | 8525 | ambiguous   | 8525 OK    | 8525 OK    | 8525 OK   
+  A rugged, compact device for capturing high-definition aeria... | 8525 | ambiguous   | 8525 OK    | 8525 OK    | 8525 OK   
+  Wi-Fi access point providing dedicated bandwidth for securit... | 8517 | edge_case   | 8525 XX    | 8525 XX    | 8517 OK   
+  Premium men's light green linen shirt, long sleeve, casual b... | 6205 | standard    | 6205 OK    | 6109 XX    | 6205 OK   
+  Compact mini action camera, 1080p video recorder, lightweigh... | 8525 | standard    | 8525 OK    | 8525 OK    | 8525 OK   
+  Modern dining table with a sleek tabletop made from molded p... | 9403 | edge_case   | 9403 OK    | 9403 OK    | 9403 OK   
+  Unisex youth red activewear knitted vest, polyester blend, s... | 6109 | standard    | 6109 OK    | 6109 OK    | 6109 OK   
+  Retail display shelf constructed with a lightweight polyprop... | 9403 | edge_case   | 3926 XX    | 3926 XX    | 9403 OK   
+  Articulated toy figures made from synthetic resin, suitable ... | 3926 | ambiguous   | 9403 XX    | 6109 XX    | 3926 OK   
+  Rugged men's green plaid flannel shirt, lumberjack style, bu... | 6205 | standard    | 6205 OK    | 6205 OK    | 6205 OK   
+  Smartphone featuring advanced communication capabilities and... | 8517 | edge_case   | 8525 XX    | 8517 OK    | 8517 OK   
+  Vintage men's brown corduroy button-down shirt, long sleeve,... | 6205 | standard    | 6205 OK    | 6205 OK    | 6205 OK   
+  Injection-molded polypropylene storage bins designed to fit ... | 3926 | edge_case   | 3926 OK    | 3926 OK    | 3926 OK   
+  Polypropylene reusable grocery shopping bag reinforced handl... | 3926 | standard    | 3926 OK    | 3926 OK    | 3926 OK   
+  Compact field broadcast camera with optical zoom, low-latenc... | 8525 | overlapping | 8525 OK    | 8525 OK    | 8525 OK   
+  Lightweight, collapsible plastic folding table, perfect for ... | 9403 | overlapping | 9403 OK    | 9403 OK    | 9403 OK   
+  Infant's soft, short-sleeved apparel, crafted from a gentle ... | 6109 | ambiguous   | 6109 OK    | 6109 OK    | 6109 OK   
+  Robotic vision system component providing real-time visual i... | 8525 | ambiguous   | 8525 OK    | 8525 OK    | 8525 OK   
+  Lightweight cotton long-sleeve top designed for gentlemen, f... | 6205 | ambiguous   | 6205 OK    | 6109 XX    | 6205 OK   
+  Portable digital broadcast transmission apparatus, 1080p vid... | 8525 | standard    | 8525 OK    | 8525 OK    | 8525 OK   
+  Panasonic DECT 6.0 cordless telephone set with answering mac... | 8517 | standard    | 9403 XX    | 8517 OK    | 8517 OK   
+  Front and rear automotive dash camera system, 4K video recor... | 8525 | standard    | 8525 OK    | 8525 OK    | 8525 OK   
+  Workwear men's heavy-duty denim shirt, long sleeve, snap but... | 6205 | standard    | 6205 OK    | 6109 XX    | 6205 OK   
+  Rugged 8K action camera featuring integrated LTE for real-ti... | 8525 | overlapping | 8525 OK    | 8525 OK    | 8525 OK   
+  Contemporary bed frame with decorative headboard and footboa... | 9403 | edge_case   | 3926 XX    | 3926 XX    | 9403 OK   
+  Modern oak wood office desk with steel frame, featuring inte... | 9403 | standard    | 9403 OK    | 9403 OK    | 9403 OK   
+  Everyday essential top, pure cotton, with a comfortable, rou... | 6109 | ambiguous   | 6109 OK    | 6109 OK    | 6109 OK   
+  Durable, brightly colored plastic outdoor dining chair, desi... | 9403 | overlapping | 3926 XX    | 9403 OK    | 9403 OK   
+  Google Nest Wifi Pro mesh router system, 3-pack, white, for ... | 8517 | standard    | 8517 OK    | 8517 OK    | 8517 OK   
+  Polypropylene modular cube bookcase organizer stackable 4-un... | 3926 | overlapping | 3926 OK    | 3926 OK    | 3926 OK   
+  Handheld unit engineered for secure data transfer and intera... | 8517 | ambiguous   | 8525 XX    | 8517 OK    | 8517 OK   
+  ComfyCo unisex thermal merino wool knitted vest for layering... | 6109 | standard    | 6109 OK    | 6109 OK    | 6109 OK   
+  TP-Link Archer AXE75 WiFi 6E tri-band router, for high-speed... | 8517 | standard    | 8517 OK    | 8517 OK    | 8517 OK   
+  Boys' lightweight poplin button-down shirt, long sleeve, gra... | 6205 | standard    | 6205 OK    | 6205 OK    | 6205 OK   
+  Professional live streaming webcam with advanced autofocus, ... | 8525 | overlapping | 8517 XX    | 8525 OK    | 8525 OK   
+  Relaxed fit top for home, made of a supple textile with inhe... | 6109 | ambiguous   | 6205 XX    | 6109 OK    | 6109 OK   
+  Linksys WAG120N ADSL2+ WiFi router with built-in modem, for ... | 8517 | standard    | 8517 OK    | 8517 OK    | 8517 OK   
 ===================================================================================================================
