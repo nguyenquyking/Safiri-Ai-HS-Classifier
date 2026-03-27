@@ -32,7 +32,9 @@ The core philosophy of my approach is to separate **Statistical Relevance** from
 For HS Code classification, new products emerge daily (e.g., new electronics models). **RAG (Retrieval-Augmented Generation)** allows the system to update its "knowledge base" simply by adding new CSV rows to the vector store, without requiring expensive retraining or fine-tuning of the model.
 
 ### 3.2 Grammatical Reasoning vs. Keyword Weights
-Traditional ML often fails on "Adversarial Modifiers." For example, "A plastic case for iPhone" contains "iPhone" (strong keyword for 8517) and "plastic case" (3926). We chose an LLM re-ranker specifically because LLMs understand **Syntactic Dependency**—knowing that "plastic case" is the head noun and "iPhone" is just a specifier.
+Traditional ML often fails on "Adversarial Modifiers." For example, consider the description: *"Retail display shelf constructed with a lightweight polypropylene frame and injection-molded plastic connecting components"*. 
+
+A keyword-based model (Method 2) is heavily skewed by high-weight terms like **"polypropylene"**, **"injection-molded"**, and **"plastic"**, leading it to incorrectly predict **HS 3926** (Articles of plastics). In contrast, I chose an LLM re-ranker specifically because LLMs understand **Syntactic Dependency**—identifying that the core subject is a **"shelf"** (HS 9403) and the plastic elements are merely subordinate material descriptions.
 
 ---
 
@@ -62,14 +64,14 @@ The dataset (252 samples) was split 80/20. The test set was intentionally weight
 | **Edge Case Results**| 50.0% | 62.5% | **100.0%** |
 
 ### 5.2 Visual Comparison
-Below is a comparison of the same query: *"A molded plastic carrying case for Apple iPhone 14 Pro Max"*.
+Below is a comparison of the same query: *"Retail display shelf constructed with a lightweight polypropylene frame and injection-molded plastic connecting components"*.
 
 #### Method 2: Baseline ML
-The ML model predicts correctly but with low confidence (**58%**) and a high ambiguity warning.
+The ML model is misled by the material keywords and predicts **3926** (Plastics) with a low confidence (**57%**), triggering an ambiguity warning.
 ![Baseline ML](assets/baseline_ml.png)
 
 #### Method 1: Generative RAG
-The Gemini re-ranked system understands that the "iPhone" is just a modifier and boosts confidence to **98%** with a clear expert explanation.
+The Gemini re-ranked system correctly identifies the **subject noun** as a "shelf" (furniture) even though the retrieved vector match was originally 3926. It corrects the final output to **9403** with **95%** confidence and a clear expert explanation.
 ![Generative RAG](assets/rag_llm.png)
 
 ---
