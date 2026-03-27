@@ -81,6 +81,8 @@ The Gemini re-ranked system understands that the "iPhone" is just a modifier and
 - **Language**: The current implementation assumes English descriptions.
 
 ### 6.2 Limitations
+- **Retrieval Bottleneck**: The system's performance is strictly bound by the quality of the Layer 1 Retriever. If the correct "ground truth" HS code is not present within the Top-3 vector matches, the LLM re-ranker cannot select it.
+- **Proposed Future Solution**: To mitigate this, future versions could implement **Hybrid Search** (combining Keyword/BM25 with Dense Vector Search) or dynamic **Top-K expansion** based on the retrieval confidence score, ensuring a more robust candidate pool for the LLM.
 - **Latency**: The LLM re-ranking step adds 1-3 seconds of latency per query, making it less suitable for high-frequency bulk processing without batching.
 - **Token Costs**: High-volume classification would incur significant API costs compared to the nearly-free ML baseline.
 - **Rate Limits**: Dependency on Google's API infrastructure.
